@@ -9,10 +9,10 @@ if (!fs.existsSync(MEDUSA_SERVER_PATH)) {
   throw new Error('.medusa/server directory not found. This indicates the Medusa build process failed. Please check for build errors.');
 }
 
-// Copy pnpm-lock.yaml
+// Copy bun.lockb
 fs.copyFileSync(
-  path.join(process.cwd(), 'pnpm-lock.yaml'),
-  path.join(MEDUSA_SERVER_PATH, 'pnpm-lock.yaml')
+  path.join(process.cwd(), 'bun.lockb'),
+  path.join(MEDUSA_SERVER_PATH, 'bun.lockb')
 );
 
 // Copy .env if it exists
@@ -26,7 +26,7 @@ if (fs.existsSync(envPath)) {
 
 // Install dependencies
 console.log('Installing dependencies in .medusa/server...');
-execSync('pnpm i --prod --frozen-lockfile', { 
+execSync('bun i --prod --frozen-lockfile', {
   cwd: MEDUSA_SERVER_PATH,
   stdio: 'inherit'
 });
